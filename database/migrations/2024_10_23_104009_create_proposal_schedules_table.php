@@ -11,17 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('proposals', function (Blueprint $table) {
+        Schema::create('proposal_schedules', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('judul');
-            $table->string('pembimbing1');
-            $table->string('pembimbing2');
-            $table->string('file');
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            $table->text('catatan_mahasiswa')->nullable();
-            $table->text('catatan_admin')->nullable();
+            $table->unsignedBigInteger('proposal_id');
+            $table->foreign('proposal_id')->references('id')->on('proposals')->onDelete('cascade');
+            $table->string('waktu');
+            $table->date('tanggal');
+            $table->string('tempat');
+            $table->string('dosen1');
+            $table->string('dosen2');
+            $table->string('dosen3');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('proposals');
+        Schema::dropIfExists('proposal_schedules');
     }
 };

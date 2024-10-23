@@ -31,6 +31,11 @@ class User extends Authenticatable
         return $this->hasMany(Proposal::class);
     }
 
+    public function proposalSchedules()
+    {
+        return $this->hasMany(ProposalSchedule::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

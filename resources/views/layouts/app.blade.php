@@ -79,19 +79,17 @@
                         <a href="{{ route('admin.dashboard') }}" class="active"><i
                                 class="material-icons-two-tone">dashboard</i>Dashboard</a>
                     </li>
-                    {{-- 
-                    <li class="@yield('active_data_setting')">
-                        <a href="#"><i class="material-icons-two-tone">settings</i>Setting<i
-                                class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="{{ route('admin.sekolah') }}">Data Sekolah</a>
-                                <a href="{{ route('admin.kelas') }}">Data Kelas</a>
-                                <a href="{{ route('admin.jadwal') }}">Data Jadwal Laporan</a>
-                                <a href="{{ route('admin.standart_hb') }}">Standart Hb</a>
-                            </li>
-                        </ul>
-                    </li> --}}
+                    <li class="@yield('active_proposal')">
+                        <a href="{{ route('admin.proposal') }}" class="active"><i
+                                class="material-icons-two-tone">dashboard</i>Proposal</a>
+                    </li>
+
+                    {{-- jadwal --}}
+                    <li class="@yield('active_jadwal')">
+                        <a href="{{ route('admin.jadwal') }}" class="active"><i
+                                class="material-icons-two-tone">dashboard</i>Jadwal</a>
+                    </li>
+                    
                     <li class="sidebar-title">
                         Data User (Mahasiswa)
                     </li>

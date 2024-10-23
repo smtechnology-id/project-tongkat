@@ -31,9 +31,24 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => ['auth.check:admin']], function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
+    // Proposal
+    Route::get('/admin/proposal', [AdminController::class, 'proposal'])->name('admin.proposal');
+
     // User
     Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
     Route::post('/admin/user/update', [AdminController::class, 'updateUser'])->name('admin.user.update');
+
+    // Proposal Approve
+    Route::post('/admin/proposal/approve', [AdminController::class, 'proposalApprove'])->name('admin.proposal.approve');
+    // Proposal Reject
+    Route::post('/admin/proposal/reject', [AdminController::class, 'proposalReject'])->name('admin.proposal.reject');
+
+    // Jadwal
+    Route::get('/admin/jadwal', [AdminController::class, 'jadwal'])->name('admin.jadwal');
+
+    // Jadwal Seminar Proposal
+    Route::get('/admin/jadwal/proposal', [AdminController::class, 'jadwalProposal'])->name('admin.jadwal.proposal');
+    Route::post('/admin/jadwal/proposal/store', [AdminController::class, 'jadwalProposalStore'])->name('admin.jadwal.proposal.store');
 });
 
 Route::group(['middleware' => ['auth.check:user']], function () {
@@ -41,4 +56,5 @@ Route::group(['middleware' => ['auth.check:user']], function () {
 
     // Proposal
     Route::get('/user/proposal', [UserController::class, 'proposal'])->name('user.proposal');
+    Route::post('/user/proposal/post', [UserController::class, 'proposalPost'])->name('user.proposalPost');
 });

@@ -15,7 +15,6 @@ class Proposal extends Model
         'judul',
         'pembimbing1',
         'pembimbing2',
-        'pembimbing3',
         'file',
         'status',
         'catatan_mahasiswa',
@@ -25,5 +24,10 @@ class Proposal extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function proposalSchedules()
+    {
+        return $this->hasMany(ProposalSchedule::class);
     }
 }
