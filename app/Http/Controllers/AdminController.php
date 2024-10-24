@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Proposal;
+use App\Models\FinalExam;
+use App\Models\ExamSchedule;
 use Illuminate\Http\Request;
 use App\Models\ProposalSchedule;
 use Illuminate\Support\Facades\Hash;
@@ -111,6 +113,64 @@ class AdminController extends Controller
             'dosen1' => $request->dosen1,
             'dosen2' => $request->dosen2,
             'dosen3' => $request->dosen3,
+            'keterangan' => $request->keterangan,
+        ]);
+        return redirect()->back()->with('success', 'Jadwal berhasil dibuat');
+    }
+
+    // Final Exam
+    public function finalExam()
+    {
+        $pending = FinalExam::where('status', 'pending')->get();
+        $approved = FinalExam::where('status', 'approved')->get();
+        $rejected = FinalExam::where('status', 'rejected')->get();
+        return view('admin.final-exams', compact('pending', 'approved', 'rejected'));
+    }
+
+    // Approve Final Exam
+    public function finalExamApprove(Request $request)
+    {
+        $finalExam = FinalExam::find($request->id);
+        $finalExam->status = 'approved';
+        $finalExam->catatan_admin = $request->catatan_admin;
+        $finalExam->save();
+        return redirect()->back()->with('success', 'Ujian Tugas Akhir berhasil disetujui');
+    }
+
+    // Reject Final Exam
+    public function finalExamReject(Request $request)
+    {
+        $finalExam = FinalExam::find($request->id);
+        $finalExam->status = 'rejected';
+        $finalExam->catatan_admin = $request->catatan_admin;
+        $finalExam->save();
+        return redirect()->back()->with('success', 'Ujian Tugas Akhir berhasil ditolak');
+    }
+
+    // Jadwal Ujian Skripsi
+    public function jadwalFinalExam()
+    {
+        $finalExams = FinalExam::where('status', 'approved')->get();
+        $jadwal = ExamSchedule::orderBy('created_at', 'desc')->get();
+        return view('admin.jadwal-exams', compact('finalExams', 'jadwal'));
+    }
+
+    public function jadwalFinalExamStore(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required',
+            'final_exam_id' => 'required',
+            'tanggal' => 'required',
+            'waktu' => 'required',
+            'tempat' => 'required',
+        ]);
+
+        ExamSchedule::create([
+            'user_id' => $request->user_id,
+            'final_exam_id' => $request->final_exam_id,
+            'tanggal' => $request->tanggal,
+            'waktu' => $request->waktu,
+            'tempat' => $request->tempat,
             'keterangan' => $request->keterangan,
         ]);
         return redirect()->back()->with('success', 'Jadwal berhasil dibuat');

@@ -4,6 +4,25 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Data Pengajuan Proposal Skripsi</h5>
+            <table class="table table-borderless">
+                <tr>
+                    <td>Pending</td>
+                    <td>:</td>
+                    <td>Pendaftaran Masuk, Perlu di Konfirmasi Oleh Admin</td>
+                </tr>
+                <tr>
+                    <td>Approved</td>
+                    <td>:</td>
+                    <td>Pendaftaran Telah Disetujui Oleh Admin, Perlu Di Buatkan Jadwal Seminar di Menu <a
+                            href="{{ route('admin.jadwal.proposal') }}">Jadwal Seminar Proposal</a></td>
+                </tr>
+                <tr>
+                    <td>Rejected</td>
+                    <td>:</td>
+                    <td>Pendaftaran Telah Ditolak Oleh Admin, Mahasiswa Dapat Mengajukan Proposal Kembali di Dashboard User
+                        di Menu Proposal</td>
+                </tr>
+            </table>
             <hr>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">

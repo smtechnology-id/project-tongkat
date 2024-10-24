@@ -12,7 +12,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><a href="">Jadwal Seminar Ujian Skripsi</a></h5>
+                    <h5 class="card-title"><a href="{{ route('admin.jadwal.final-exam') }}">Jadwal Seminar Ujian Skripsi</a></h5>
                 </div>
             </div>
         </div>

@@ -16,7 +16,8 @@
                 @if ($proposal->status == 'pending')
                     <div class="card bg-warning">
                         <div class="card-body">
-                            <p class="card-text">Proposal anda sedang menunggu konfirmasi dari Pihak Admin / Panitia,
+                            <p class="card-text">Pendaftaran Proposal anda sedang menunggu konfirmasi dari Pihak Admin /
+                                Panitia,
                                 Silahkan
                                 menunggu Sampai Status Proposal berubah</p>
                             <p class="card-text">Catatan Dari Admin : {{ $proposal->catatan_admin ?? '-' }}</p>
@@ -32,62 +33,73 @@
                 @elseif ($proposal->status == 'rejected')
                     <div class="card bg-danger">
                         <div class="card-body">
-                            <p class="card-text" style="color: white">Proposal anda telah ditolak, Silahkan Ajukan Proposal Kembali</p>
-                            <p class="card-text" style="color: white">Catatan Dari Admin : {{ $proposal->catatan_admin ?? '-' }}</p>
+                            <p class="card-text" style="color: white">Proposal anda telah ditolak, Silahkan Ajukan Proposal
+                                Kembali</p>
+                            <p class="card-text" style="color: white">Catatan Dari Admin :
+                                {{ $proposal->catatan_admin ?? '-' }}</p>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#pengajuan">
+                                Pengajuan Proposal
+                            </button>
                         </div>
+
                     </div>
                 @endif
             @endif
 
-            @if ($proposal->status == 'approved')
-                @if ($jadwal == null)
-                    <div class="card bg-warning">
-                        <div class="card-body">
-                            <p class="card-text">Jadwal Seminar Belum Ditentukan, Silahkan Menunggu Jadwal Dari Admin</p>
+            @if ($proposal)
+                @if ($proposal->status == 'approved')
+                    @if ($jadwal == null)
+                        <div class="card bg-warning">
+                            <div class="card-body">
+                                <p class="card-text">Jadwal Seminar Belum Ditentukan, Silahkan Menunggu Jadwal Dari Admin
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                @else
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-text">Jadwal Seminar Telah Ditentukan, Silahkan Cek Jadwal Dibawah Ini</p>
-                            <p class="text-primary fw-bold">Judul Proposal : {{ $jadwal->proposal->judul }}</p>
-                            <table class="table table-bordered">
-                                <tr>
-                                    <td>Nama Mahasiswa</td>
-                                    <td>:</td>
-                                    <td>{{ $jadwal->user->name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Nama Dosen Pembimbing</td>
-                                    <td>:</td>
-                                    <td>{{ $jadwal->proposal->pembimbing1 }} (Dosen Pembimbing 1), {{ $jadwal->proposal->pembimbing2 }} (Dosen Pembimbing 2)</td>
-                                </tr>
-                                <tr>
-                                    <td>Penguji</td>
-                                    <td>:</td>
-                                    <td>{{ $jadwal->dosen1 }} (Penguji 1), {{ $jadwal->dosen2 }} (Penguji 2), {{ $jadwal->dosen3 }} (Penguji 3)</td>
-                                </tr>
-                                <tr>
-                                    <td>Waktu Seminar</td>
-                                    <td>:</td>
-                                    <td>{{ $jadwal->waktu }} ({{ $jadwal->tanggal }})</td>
-                                </tr>
-                                <tr>
-                                    <td>Tempat Seminar</td>
-                                    <td>:</td>
-                                    <td>{{ $jadwal->tempat }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Keterangan</td>
-                                    <td>:</td>
-                                    <td>{{ $jadwal->keterangan }}</td>
-                                </tr>
-                            </table>
+                    @else
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text">Jadwal Seminar Telah Ditentukan, Silahkan Cek Jadwal Dibawah Ini</p>
+                                <p class="text-primary fw-bold">Judul Proposal : {{ $jadwal->proposal->judul }}</p>
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td>Nama Mahasiswa</td>
+                                        <td>:</td>
+                                        <td>{{ $jadwal->user->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nama Dosen Pembimbing</td>
+                                        <td>:</td>
+                                        <td>{{ $jadwal->proposal->pembimbing1 }} (Dosen Pembimbing 1),
+                                            {{ $jadwal->proposal->pembimbing2 }} (Dosen Pembimbing 2)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Penguji</td>
+                                        <td>:</td>
+                                        <td>{{ $jadwal->dosen1 }} (Penguji 1), {{ $jadwal->dosen2 }} (Penguji 2),
+                                            {{ $jadwal->dosen3 }} (Penguji 3)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Waktu Seminar</td>
+                                        <td>:</td>
+                                        <td>{{ $jadwal->waktu }} ({{ $jadwal->tanggal }})</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tempat Seminar</td>
+                                        <td>:</td>
+                                        <td>{{ $jadwal->tempat }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Keterangan</td>
+                                        <td>:</td>
+                                        <td>{{ $jadwal->keterangan }}</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endif
             @endif
-
             <!-- Modal -->
             <div class="modal fade" id="pengajuan" tabindex="-1" aria-labelledby="pengajuanLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -155,7 +167,7 @@
                             <th>Catatan</th>
                             <th>Status</th>
                             <th>Tanggal Pengajuan</th>
-                          
+
                         </tr>
                     </thead>
                     <tbody>

@@ -84,6 +84,26 @@
                                 class="material-icons-two-tone">dashboard</i>Proposal</a>
                     </li>
 
+                    <li>
+                        <a href="#"><i class="material-icons-two-tone">view_agenda</i>Proposal<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{ route('admin.proposal') }}">Pendaftaran Proposal</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.proposal.pengumuman') }}">Pengumuman Proposal</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="@yield('active_final_exam')">
+                        <a href="{{ route('admin.final_exam') }}" class="active"><i
+                                class="material-icons-two-tone">dashboard</i>Pendaftaran Tugas Akhir</a>
+                    </li>
+
+                   
+
                     {{-- jadwal --}}
                     <li class="@yield('active_jadwal')">
                         <a href="{{ route('admin.jadwal') }}" class="active"><i
@@ -108,10 +128,12 @@
                         <a href="{{ route('user.proposal') }}" class="active"><i
                                 class="material-icons-two-tone">dashboard</i>Proposal</a>
                     </li>
-                    
+                     {{-- final exam --}}
+                     <li class="@yield('active_final_exam')">
+                        <a href="{{ route('user.final_exam') }}" class="active"><i
+                                class="material-icons-two-tone">dashboard</i>Pendaftaran Tugas Akhir</a>
+                    </li>
                     @endif
-
-
                     <li class="sidebar-title">
                         Account
                     </li>

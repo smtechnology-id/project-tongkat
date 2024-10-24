@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('pembimbing2');
             $table->string('file');
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->enum('status_kelulusan', ['pending', 'lulus', 'tidak lulus'])->default('pending');
             $table->text('catatan_mahasiswa')->nullable();
             $table->text('catatan_admin')->nullable();
             $table->timestamps();

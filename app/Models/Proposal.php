@@ -18,7 +18,8 @@ class Proposal extends Model
         'file',
         'status',
         'catatan_mahasiswa',
-        'catatan_admin'
+        'catatan_admin',
+        'status_kelulusan'
     ];
 
     public function user()
