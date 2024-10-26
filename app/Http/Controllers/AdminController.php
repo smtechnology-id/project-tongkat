@@ -58,6 +58,7 @@ class AdminController extends Controller
     // Approve Proposal
     public function proposalApprove(Request $request)
     {
+        dd($request->all());
         $proposal = Proposal::find($request->id);
         $proposal->status = 'approved';
         $proposal->catatan_admin = $request->catatan_admin;
@@ -174,5 +175,35 @@ class AdminController extends Controller
             'keterangan' => $request->keterangan,
         ]);
         return redirect()->back()->with('success', 'Jadwal berhasil dibuat');
+    }
+
+    public function proposalPengumuman()
+    {
+        $proposals = Proposal::where('status', 'approved')->where('status_kelulusan', 'pending')->get();
+        $lulus = Proposal::where('status', 'approved')->where('status_kelulusan', 'lulus')->get();
+        $tidak_lulus = Proposal::where('status', 'approved')->where('status_kelulusan', 'tidak lulus')->get();
+        return view('admin.proposal-pengumuman', compact('proposals', 'lulus', 'tidak_lulus'));
+    }
+
+    // Proposal Lulus
+    public function proposalLulus(Request $request)
+    {
+
+        $proposal = Proposal::find($request->id);
+        $proposal->status_kelulusan = 'lulus';
+        $proposal->save();
+        return redirect()->back()->with('success', 'Proposal berhasil diluluskan');
+    }
+
+    // Proposal Tidak Lulus
+    public function proposalTidakLulus(Request $request)
+    {
+        $proposal = Proposal::find($request->id);
+        $proposal->status_kelulusan = 'tidak lulus';
+        $proposal->status = 'rejected';
+        $proposal->save();
+
+        $delete = ProposalSchedule::where('proposal_id', $proposal->id)->delete();
+        return redirect()->back()->with('success', 'Proposal berhasil ditidak luluskan');   
     }
 }

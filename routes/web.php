@@ -61,6 +61,8 @@ Route::group(['middleware' => ['auth.check:admin']], function () {
 
     // Pengumuman Proposal
     Route::get('/admin/proposal/pengumuman', [AdminController::class, 'proposalPengumuman'])->name('admin.proposal.pengumuman');
+    Route::post('/admin/proposal/lulus', [AdminController::class, 'proposalLulus'])->name('admin.proposal.lulus');
+    Route::post('/admin/proposal/tidak-lulus', [AdminController::class, 'proposalTidakLulus'])->name('admin.proposal.tidak-lulus');
 });
 
 Route::group(['middleware' => ['auth.check:user']], function () {

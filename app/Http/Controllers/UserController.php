@@ -63,6 +63,7 @@ class UserController extends Controller
     public function finalExam()
     {
         $proposal = Proposal::where('user_id', Auth::user()->id)->where('status', 'approved')->latest()->first();
+        dd($proposal);
         $jadwal = ProposalSchedule::where('user_id', Auth::user()->id)->first();
         $final_exams = FinalExam::where('user_id', Auth::user()->id)->get();
         $final_exam = FinalExam::where('user_id', Auth::user()->id)->latest()->first();
