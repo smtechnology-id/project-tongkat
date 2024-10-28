@@ -31,8 +31,12 @@
     <link href="{{ asset('assets/css/main.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/neptune.png') }}" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/neptune.png') }}" />
+  
+    <link rel="icon" type="{{ asset('assets/images/logo-udayana.png') }}" sizes="32x32"
+        href="{{ asset('assets/images/logo-udayana.png') }}" />
+    <link rel="icon" type="{{ asset('assets/images/logo-udayana.png') }}" sizes="16x16"
+        href="{{ asset('assets/images/logo-udayana.png') }}" />
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,7 +57,7 @@
             <form action="{{ route('loginPost') }}" method="post">
                 @csrf
                 <div class="logo">
-                    <a href="{{ route('login') }}">Tongkat</a>
+                    <a href="{{ route('login') }}">Tugas Akhir Program Studi Teknik Lingkungan</a>
                 </div>
                 <p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have
                     an account? <a href="{{ route('register') }}">Sign Up</a></p>

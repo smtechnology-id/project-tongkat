@@ -7,6 +7,7 @@ use App\Models\FinalExam;
 use App\Models\ExamSchedule;
 use Illuminate\Http\Request;
 use App\Models\ProposalSchedule;
+use App\Models\FinalDocument;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -63,7 +64,6 @@ class UserController extends Controller
     public function finalExam()
     {
         $proposal = Proposal::where('user_id', Auth::user()->id)->where('status', 'approved')->latest()->first();
-        dd($proposal);
         $jadwal = ProposalSchedule::where('user_id', Auth::user()->id)->first();
         $final_exams = FinalExam::where('user_id', Auth::user()->id)->get();
         $final_exam = FinalExam::where('user_id', Auth::user()->id)->latest()->first();
@@ -135,5 +135,124 @@ class UserController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Pengajuan Ujian Tugas Akhir berhasil dikirim, Silahkan tunggu konfirmasi dari admin');
+    }
+
+    // Final Document
+    public function finalDocument()
+    {
+        $final_documents = FinalDocument::where('user_id', Auth::user()->id)->first();
+        $final_exam = FinalExam::where('user_id', Auth::user()->id)->latest()->first();
+        return view('user.final-document', compact('final_documents', 'final_exam'));
+    }
+
+    // Final Document Store
+    public function finalDocumentStore(Request $request)
+    {
+        $request->validate([
+            'pass_foto' => 'required|image|max:10048',
+            'buku_tugas_akhir' => 'required|mimes:pdf|max:10048',
+            'surat_tugas_pembimbing' => 'required|mimes:pdf|max:10048',
+            'surat_tugas_penguji_ujian_proposal' => 'required|mimes:pdf|max:10048',
+            'berita_acara_ujian_proposal' => 'required|mimes:pdf|max:10048',
+            'surat_tugas_penguji_tugas_akhir' => 'required|mimes:pdf|max:10048',
+            'logbook_final_tugas_akhir' => 'required|mimes:pdf|max:10048',
+            'kartu_kehadiran_peserta_seminar_proposal' => 'required|mimes:pdf|max:10048',
+            'surat_keterangan_persetujuan_ujian_tugas_akhir' => 'required|mimes:pdf|max:10048',
+            'berita_acara_ujian_tugas_akhir' => 'required|mimes:pdf|max:10048',
+            'toefl' => 'required|mimes:pdf|max:10048',
+            'letter_of_acceptance' => 'required|mimes:pdf|max:10048',
+        ]);
+
+        $files = [
+            'pass_foto',
+            'buku_tugas_akhir',
+            'surat_tugas_pembimbing',
+            'surat_tugas_penguji_ujian_proposal',
+            'berita_acara_ujian_proposal',
+            'surat_tugas_penguji_tugas_akhir',
+            'logbook_final_tugas_akhir',
+            'kartu_kehadiran_peserta_seminar_proposal',
+            'surat_keterangan_persetujuan_ujian_tugas_akhir',
+            'berita_acara_ujian_tugas_akhir',
+            'toefl',
+            'letter_of_acceptance'
+        ];
+
+        $fileData = [];
+
+        $proposal_id = Proposal::where('user_id', Auth::user()->id)->latest()->first()->id;
+        $final_exam_id = FinalExam::where('user_id', Auth::user()->id)->latest()->first()->id;
+        foreach ($files as $file) {
+            if ($request->hasFile($file)) {
+                $uploadedFile = $request->file($file);
+                $fileName = uniqid() . '.' . $uploadedFile->getClientOriginalExtension();
+                $uploadedFile->storeAs('public/final_document', $fileName);
+                $fileData[$file] = $fileName;
+            }
+        }
+
+        $finalDocument = FinalDocument::create([
+            'user_id' => Auth::id(),
+            'status' => 'pending',
+            'proposal_id' => $proposal_id,
+            'final_exam_id' => $final_exam_id,
+        ] + $fileData);
+
+        return redirect()->back()->with('success', 'Dokumen akhir berhasil diunggah. Silakan tunggu konfirmasi dari admin.');
+    }
+
+    // Final Document Update
+    public function finalDocumentUpdate(Request $request)
+    {
+        $request->validate([
+            'pass_foto' => 'nullable|image|max:10048',
+            'buku_tugas_akhir' => 'nullable|mimes:pdf|max:10048',
+            'surat_tugas_pembimbing' => 'nullable|mimes:pdf|max:10048',
+            'surat_tugas_penguji_ujian_proposal' => 'nullable|mimes:pdf|max:10048',
+            'berita_acara_ujian_proposal' => 'nullable|mimes:pdf|max:10048',
+            'surat_tugas_penguji_tugas_akhir' => 'nullable|mimes:pdf|max:10048',
+            'logbook_final_tugas_akhir' => 'nullable|mimes:pdf|max:10048',
+            'kartu_kehadiran_peserta_seminar_proposal' => 'nullable|mimes:pdf|max:10048',
+            'surat_keterangan_persetujuan_ujian_tugas_akhir' => 'nullable|mimes:pdf|max:10048',
+            'berita_acara_ujian_tugas_akhir' => 'nullable|mimes:pdf|max:10048',
+            'toefl' => 'nullable|mimes:pdf|max:10048',
+            'letter_of_acceptance' => 'nullable|mimes:pdf|max:10048',
+        ]);
+
+        $finalDocument = FinalDocument::where('user_id', Auth::id())->first();
+
+        if (!$finalDocument) {
+            return redirect()->back()->with('error', 'Dokumen akhir tidak ditemukan.');
+        }
+
+        $files = [
+            'pass_foto',
+            'buku_tugas_akhir',
+            'surat_tugas_pembimbing',
+            'surat_tugas_penguji_ujian_proposal',
+            'berita_acara_ujian_proposal',
+            'surat_tugas_penguji_tugas_akhir',
+            'logbook_final_tugas_akhir',
+            'kartu_kehadiran_peserta_seminar_proposal',
+            'surat_keterangan_persetujuan_ujian_tugas_akhir',
+            'berita_acara_ujian_tugas_akhir',
+            'toefl',
+            'letter_of_acceptance'
+        ];
+
+        $updateData = [];
+
+        foreach ($files as $file) {
+            if ($request->hasFile($file)) {
+                $uploadedFile = $request->file($file);
+                $fileName = uniqid() . '.' . $uploadedFile->getClientOriginalExtension();
+                $uploadedFile->storeAs('public/final_document', $fileName);
+                $updateData[$file] = $fileName;
+            }
+        }
+
+        $finalDocument->update($updateData);
+
+        return redirect()->back()->with('success', 'Dokumen akhir berhasil diperbarui. Silakan tunggu konfirmasi dari admin.');
     }
 }

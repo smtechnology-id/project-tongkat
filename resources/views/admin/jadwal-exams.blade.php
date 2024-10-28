@@ -60,7 +60,7 @@
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#detailDokumen{{ $proposal->id }}">
-                                                Detail
+                                                Dokumen
                                             </button>
 
                                             <!-- Modal -->
@@ -195,122 +195,123 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <table class="table table-bordered" id="datatable1" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Mahasiswa</th>
-                                <th>NIM</th>
-                                <th>No HP</th>
-                                <th>Judul</th>
-                                <th>Dosen Pembimbing</th>
-                                <th>Dosen Penguji</th>
-                                <th>Dokumen</th>
-                                <th>Status</th>
-                                <th>Tanggal Pengajuan</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($jadwal as $item)
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="datatable1" width="100%" cellspacing="0">
+                            <thead>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->user->name }}</td>
-                                    <td>{{ $item->user->nim }}</td>
-                                    <td>{{ $item->user->telephone }}</td>
-                                    <td>{{ $item->judul }}</td>
-                                    <td>{{ $item->waktu }} - {{ $item->tanggal }}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">
-                                            Detail
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Jadwal Ujian Tugas Akhir
-                                                            {{ $item->user->name }}</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <table class="table table-bordered">
-                                                            <tr>
-                                                                <th>Nama Mahasiswa</th>
-                                                                <td>:</td>
-                                                                <td>{{ $item->user->name }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>NIM</th>
-                                                                <td>:</td>
-                                                                <td>{{ $item->user->nim }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Judul</th>
-                                                                <td>:</td>
-                                                                <td>{{ $item->finalExam->judul }}</td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <th>Waktu Seminar</th>
-                                                                <td>:</td>
-                                                                <td>{{ $item->waktu }} {{ $item->tanggal }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Tempat Seminar</th>
-                                                                <td>:</td>
-                                                                <td>{{ $item->tempat }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Dosen Pembimbing 1</th>
-                                                                <td>:</td>
-                                                                <td>{{ $item->finalExam->pembimbing_1 }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Dosen Pembimbing 2</th>
-                                                                <td>:</td>
-                                                                <td>{{ $item->finalExam->pembimbing_2 }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Dosen Penguji 1</th>
-                                                                <td>:</td>
-                                                                <td>{{ $item->finalExam->penguji_1 }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Dosen Penguji 2</th>
-                                                                <td>:</td>
-                                                                <td>{{ $item->finalExam->penguji_2 }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Dosen Penguji 3</th>
-                                                                <td>:</td>
-                                                                <td>{{ $item->finalExam->penguji_3 }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Keterangan</th>
-                                                                <td>:</td>
-                                                                <td>{{ $item->keterangan }}</td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save
-                                                            changes</button>
+                                    <th>No</th>
+                                    <th>Nama Mahasiswa</th>
+                                    <th>NIM</th>
+                                    <th>No HP</th>
+                                    <th>Judul</th>
+                                    <th>Waktu</th>
+                                    <th>Tempat</th>
+                                    <th>Detail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($jadwal as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->user->nim }}</td>
+                                        <td>{{ $item->user->telephone }}</td>
+                                        <td>{{ $item->finalExam->judul }}</td>
+                                        <td>{{ $item->waktu }} - {{ $item->tanggal }}</td>
+                                        <td>{{ $item->tempat }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal{{ $item->id }}">
+                                                Detail Jadwal
+                                            </button>
+    
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Jadwal Ujian Tugas Akhir
+                                                                {{ $item->user->name }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <table class="table table-bordered">
+                                                                <tr>
+                                                                    <th>Nama Mahasiswa</th>
+                                                                    <td>:</td>
+                                                                    <td>{{ $item->user->name }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>NIM</th>
+                                                                    <td>:</td>
+                                                                    <td>{{ $item->user->nim }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Judul</th>
+                                                                    <td>:</td>
+                                                                    <td>{{ $item->finalExam->judul }}</td>
+                                                                </tr>
+    
+                                                                <tr>
+                                                                    <th>Waktu Seminar</th>
+                                                                    <td>:</td>
+                                                                    <td>{{ $item->waktu }} {{ $item->tanggal }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Tempat Seminar</th>
+                                                                    <td>:</td>
+                                                                    <td>{{ $item->tempat }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Dosen Pembimbing 1</th>
+                                                                    <td>:</td>
+                                                                    <td>{{ $item->finalExam->pembimbing_1 }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Dosen Pembimbing 2</th>
+                                                                    <td>:</td>
+                                                                    <td>{{ $item->finalExam->pembimbing_2 }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Dosen Penguji 1</th>
+                                                                    <td>:</td>
+                                                                    <td>{{ $item->finalExam->penguji_1 }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Dosen Penguji 2</th>
+                                                                    <td>:</td>
+                                                                    <td>{{ $item->finalExam->penguji_2 }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Dosen Penguji 3</th>
+                                                                    <td>:</td>
+                                                                    <td>{{ $item->finalExam->penguji_3 }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Keterangan</th>
+                                                                    <td>:</td>
+                                                                    <td>{{ $item->keterangan }}</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save
+                                                                changes</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                        </td>
+                                        
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 

@@ -8,6 +8,7 @@ use App\Models\FinalExam;
 use App\Models\ExamSchedule;
 use Illuminate\Http\Request;
 use App\Models\ProposalSchedule;
+use App\Models\FinalDocument;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -58,7 +59,6 @@ class AdminController extends Controller
     // Approve Proposal
     public function proposalApprove(Request $request)
     {
-        dd($request->all());
         $proposal = Proposal::find($request->id);
         $proposal->status = 'approved';
         $proposal->catatan_admin = $request->catatan_admin;
@@ -205,5 +205,40 @@ class AdminController extends Controller
 
         $delete = ProposalSchedule::where('proposal_id', $proposal->id)->delete();
         return redirect()->back()->with('success', 'Proposal berhasil ditidak luluskan');   
+    }
+
+
+    public function finalExamPengumuman()
+    {
+        $pending = FinalExam::where('status_kelulusan', 'pending')->get();
+        $lulus = FinalExam::where('status_kelulusan', 'lulus')->get();
+        $tidak_lulus = FinalExam::where('status_kelulusan', 'tidak lulus')->get();
+        return view('admin.final-exam-pengumuman', compact('pending', 'lulus', 'tidak_lulus'));
+    }
+
+    // Final Exam Lulus
+    public function finalExamLulus(Request $request)
+    {
+        $finalExam = FinalExam::find($request->id);
+        $finalExam->status_kelulusan = 'lulus';
+        $finalExam->save();
+        return redirect()->back()->with('success', 'Ujian Tugas Akhir berhasil diluluskan');
+    }
+
+    // Final Exam Tidak Lulus
+    public function finalExamTidakLulus(Request $request)
+    {
+        $finalExam = FinalExam::find($request->id);
+        $finalExam->status_kelulusan = 'tidak lulus';
+        $finalExam->status = 'rejected';
+        $finalExam->save();
+        return redirect()->back()->with('success', 'Ujian Tugas Akhir berhasil ditidak luluskan');
+    }
+
+    // Final Document   
+    public function finalDocument()
+    {
+        $finalDocuments = FinalDocument::all();
+        return view('admin.final-document', compact('finalDocuments'));
     }
 }

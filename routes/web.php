@@ -63,6 +63,14 @@ Route::group(['middleware' => ['auth.check:admin']], function () {
     Route::get('/admin/proposal/pengumuman', [AdminController::class, 'proposalPengumuman'])->name('admin.proposal.pengumuman');
     Route::post('/admin/proposal/lulus', [AdminController::class, 'proposalLulus'])->name('admin.proposal.lulus');
     Route::post('/admin/proposal/tidak-lulus', [AdminController::class, 'proposalTidakLulus'])->name('admin.proposal.tidak-lulus');
+
+    // Pengumuman Tugas Akhir
+    Route::get('/admin/final_exam/pengumuman', [AdminController::class, 'finalExamPengumuman'])->name('admin.final_exam.pengumuman');
+    Route::post('/admin/final_exam/lulus', [AdminController::class, 'finalExamLulus'])->name('admin.final-exam.lulus');
+    Route::post('/admin/final_exam/tidak-lulus', [AdminController::class, 'finalExamTidakLulus'])->name('admin.final-exam.tidak-lulus');
+
+    // Final Document
+    Route::get('/admin/final_document', [AdminController::class, 'finalDocument'])->name('admin.final_document');
 });
 
 Route::group(['middleware' => ['auth.check:user']], function () {
@@ -76,5 +84,8 @@ Route::group(['middleware' => ['auth.check:user']], function () {
     Route::get('/user/final_exam', [UserController::class, 'finalExam'])->name('user.final_exam');
     Route::post('/user/final_examPost', [UserController::class, 'examPost'])->name('user.examPost');
 
-    
+    // Final Document
+    Route::get('/user/final_document', [UserController::class, 'finalDocument'])->name('user.final_document');
+    Route::post('/user/final_document/store', [UserController::class, 'finalDocumentStore'])->name('user.final-document.store');
+    Route::post('/user/final_document/update', [UserController::class, 'finalDocumentUpdate'])->name('user.final-document.update');
 });

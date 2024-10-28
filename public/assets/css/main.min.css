@@ -5950,24 +5950,24 @@ span.flatpickr-weekday {
     display: block;
 }
 .app-auth-sign-in .app-auth-background {
-    background: url(../images/backgrounds/sign-in.svg) no-repeat;
+    background: url(../logo.png) no-repeat;
     background-size: 60%;
     background-position: center;
 }
 .app-auth-sign-up .app-auth-background {
-    background: url(../images/backgrounds/sign-up.svg) no-repeat;
+    background: url(../logo.png) no-repeat;
     background-size: 60%;
     background-position: center;
 }
 .app-auth-lock-screen .app-auth-background {
-    background: url(../images/backgrounds/lock-screen.svg) no-repeat;
+    background: url(../logo.png) no-repeat;
     background-size: 60%;
     background-position: center;
 }
 .app-auth-container .logo a {
     display: flex;
     padding-left: 70px;
-    background: url(../images/neptune.png) no-repeat;
+    background: url(../images/logo-udayana.png) no-repeat;
     height: 50px;
     background-size: 50px;
     align-items: center;

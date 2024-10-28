@@ -75,41 +75,50 @@
                         Tongkat
                     </li>
                     @if (Auth::user()->role == 'admin')
-                    <li class="@yield('active_dashboard')">
-                        <a href="{{ route('admin.dashboard') }}" class="active"><i
-                                class="material-icons-two-tone">dashboard</i>Dashboard</a>
-                    </li>
-                    <li class="@yield('active_proposal')">
-                        <a href="{{ route('admin.proposal') }}" class="active"><i
-                                class="material-icons-two-tone">dashboard</i>Proposal</a>
-                    </li>
+                   
 
                     <li>
-                        <a href="#"><i class="material-icons-two-tone">view_agenda</i>Proposal<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <a href="#"><i class="material-icons-two-tone">upload_file</i>Proposal<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a href="{{ route('admin.proposal') }}">Pendaftaran Proposal</a>
                             </li>
+                            
+                            <li>
+                                <a href="{{ route('admin.jadwal.proposal') }}">Jadwal Proposal</a>
+                            </li>
+
                             <li>
                                 <a href="{{ route('admin.proposal.pengumuman') }}">Pengumuman Proposal</a>
                             </li>
 
                         </ul>
                     </li>
+                    <li>
+                        <a href="#"><i class="material-icons-two-tone">text_snippet</i>Tugas Akhir<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{ route('admin.final_exam') }}">Pendaftaran Tugas Akhir</a>
+                            </li>
+                            
+                            <li>
+                                <a href="{{ route('admin.jadwal.final-exam') }}">Jadwal Tugas Akhir</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.final_exam.pengumuman') }}">Pengumuman Tugas Akhir</a>
+                            </li>
 
-                    <li class="@yield('active_final_exam')">
-                        <a href="{{ route('admin.final_exam') }}" class="active"><i
-                                class="material-icons-two-tone">dashboard</i>Pendaftaran Tugas Akhir</a>
+                        </ul>
                     </li>
 
-                   
+                    {{-- Dokumen Final --}}
+                    <li class="@yield('active_document')">
+                        <a href="{{ route('admin.final_document') }}" class="active"><i
+                                class="material-icons-two-tone">folder_open</i>Dokumen Final</a>
+                    </li>
+
 
                     {{-- jadwal --}}
-                    <li class="@yield('active_jadwal')">
-                        <a href="{{ route('admin.jadwal') }}" class="active"><i
-                                class="material-icons-two-tone">dashboard</i>Jadwal</a>
-                    </li>
-                    
                     <li class="sidebar-title">
                         Data User (Mahasiswa)
                     </li>
@@ -126,12 +135,16 @@
                     </li>
                     <li class="@yield('active_proposal')">
                         <a href="{{ route('user.proposal') }}" class="active"><i
-                                class="material-icons-two-tone">dashboard</i>Proposal</a>
+                                class="material-icons-two-tone">upload_file</i>Proposal</a>
                     </li>
                      {{-- final exam --}}
                      <li class="@yield('active_final_exam')">
                         <a href="{{ route('user.final_exam') }}" class="active"><i
-                                class="material-icons-two-tone">dashboard</i>Pendaftaran Tugas Akhir</a>
+                                class="material-icons-two-tone">text_snippet</i>Pendaftaran Tugas Akhir</a>
+                    </li>
+                    <li class="@yield('active_final_document')">
+                        <a href="{{ route('user.final_document') }}" class="active"><i
+                                class="material-icons-two-tone">folder_open</i>Dokumen Final</a>
                     </li>
                     @endif
                     <li class="sidebar-title">

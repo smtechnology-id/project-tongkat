@@ -24,12 +24,27 @@
                         </div>
                     </div>
                 @elseif ($proposal->status == 'approved')
-                    <div class="card bg-primary">
-                        <div class="card-body">
-                            <p class="card-text">Proposal Anda Telah Disetujui, Silahkan Lanjutkan Ke Tahap Selanjutnya</p>
-                            <p class="card-text">Catatan Dari Admin : {{ $proposal->catatan_admin ?? '-' }}</p>
+                    @if ($proposal->status_kelulusan == 'lulus')
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text">Anda Dinyatakan <span class="text-success fw-bold" style="font-size: 1.2rem">LULUS</span> Ujian Proposal, Silahkan lanjutkan ke tahap selanjutnya di menu
+                                    <a href="{{ route('user.final_exam') }}">Ujian Tugas Akhir</a></p>
+                            </div>
                         </div>
-                    </div>
+                    @elseif ($proposal->status_kelulusan == 'tidak_lulus')
+                        <div class="card bg-danger">
+                            <div class="card-body">
+                                <p class="card-text">Proposal anda tidak lulus, Silahkan ajukan kembali proposal di menu <a
+                                        href="{{ route('user.proposal') }}">Pengajuan Proposal</a></p>
+                            </div>
+                        </div>
+                    @elseif ($proposal->status_kelulusan == 'pending')
+                        <div class="card bg-warning">
+                            <div class="card-body">
+                                <p class="card-text">Proposal Anda Telah Disetujui Oleh Admin, Silahkan menunggu Jadwal Seminar Proposal</p>
+                            </div>
+                        </div>
+                    @endif
                 @elseif ($proposal->status == 'rejected')
                     <div class="card bg-danger">
                         <div class="card-body">
