@@ -11,7 +11,7 @@
     <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Register || Tongkat - Tugas Akhir Mahasiswa Teknik Lingkungan Universitas Udayana</title>
+    <title>Register || Tugas Akhir Program Studi Teknik Lingkungan</title>
 
     <!-- Styles -->
     <link rel="preconnect" href="https://fonts.gstatic.com">

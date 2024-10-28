@@ -49,6 +49,10 @@
                                                 </tr>
                                                 <tr>
                                                     <td>✅</td>
+                                                    <td>File Tugas Akhir</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅</td>
                                                     <td>Surat tugas pembimbing</td>
                                                 </tr>
                                                 <tr>
@@ -116,7 +120,11 @@
                                                      accept="image/*" >
                                                      <a href="{{ asset('storage/final_document/' . $final_documents->pass_foto) }}" target="_blank">Lihat Pas Foto</a>
                                             </div>
-
+                                            <div class="mb-3">
+                                                <label for="file_tugas_akhir" class="form-label">File Tugas Akhir</label>
+                                                <input type="file" class="form-control" id="file_tugas_akhir" name="file_tugas_akhir" accept="application/pdf">
+                                                <a href="{{ asset('storage/final_document/' . $final_documents->file_tugas_akhir) }}" target="_blank">Lihat File Tugas Akhir</a>
+                                            </div>
                                             <div class="mb-3">
                                                 <label for="buku_tugas_akhir" class="form-label">Buku Tugas Akhir</label>
                                                 <input type="file" class="form-control" id="buku_tugas_akhir"
@@ -228,6 +236,12 @@
                                         target="_blank">Lihat Pas Foto</a></td>
                             </tr>
                             <tr>
+                                <td>File Tugas Akhir</td>
+                                <td>:</td>
+                                <td><a href="{{ asset('storage/final_document/' . $final_documents->file_tugas_akhir) }}"
+                                        target="_blank">Lihat File Tugas Akhir</a></td>
+                            </tr>
+                            <tr>
                                 <td>Buku Tugas Akhir</td>
                                 <td>:</td>
                                 <td><a href="{{ asset('storage/final_document/' . $final_documents->buku_tugas_akhir) }}"
@@ -320,6 +334,11 @@
                                                 <label for="pass_foto" class="form-label">Pas Foto</label>
                                                 <input type="file" class="form-control" id="pass_foto"
                                                     name="pass_foto" required accept="image/*">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="file_tugas_akhir" class="form-label">File Tugas Akhir</label>
+                                                <input type="file" class="form-control" id="file_tugas_akhir" name="file_tugas_akhir" required accept="application/pdf">
                                             </div>
 
                                             <div class="mb-3">

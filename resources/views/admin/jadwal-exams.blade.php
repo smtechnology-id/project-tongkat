@@ -36,7 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($finalExams as $proposal)
+                                @foreach ($belumTerjadwal as $proposal)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $proposal->user->name }}</td>
@@ -206,6 +206,7 @@
                                     <th>Judul</th>
                                     <th>Waktu</th>
                                     <th>Tempat</th>
+                                    <th>Dosen</th>
                                     <th>Detail</th>
                                 </tr>
                             </thead>
@@ -220,21 +221,94 @@
                                         <td>{{ $item->waktu }} - {{ $item->tanggal }}</td>
                                         <td>{{ $item->tempat }}</td>
                                         <td>
+                                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                                data-bs-target="#updateDosen{{ $item->id }}">
+                                                Update Dosen
+                                            </button>
+                                            <div class="modal fade" id="updateDosen{{ $item->id }}" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <form action="{{ route('admin.final-exam.updateDosen') }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Update
+                                                                    Dosen Penguji
+                                                                    {{ $item->user->name }}</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <input type="hidden" name="final_exam_id"
+                                                                        value="{{ $item->finalExam->id }}">
+                                                                    <div class="form-group mb-3">
+                                                                        <label for="pembimbing_1">Dosen Pembimbing 1 <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <input type="text" name="pembimbing_1"
+                                                                            class="form-control" required
+                                                                            value="{{ $item->finalExam->pembimbing_1 }}">
+                                                                    </div>
+                                                                    <div class="form-group mb-3">
+                                                                        <label for="pembimbing_2">Dosen Pembimbing 2 <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <input type="text" name="pembimbing_2"
+                                                                            class="form-control" required
+                                                                            value="{{ $item->finalExam->pembimbing_2 }}">
+                                                                    </div>
+                                                                    <div class="form-group mb-3">
+                                                                        <label for="penguji_1">Dosen Penguji 1 <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <input type="text" name="penguji_1"
+                                                                            class="form-control" required
+                                                                            value="{{ $item->finalExam->penguji_1 }}">
+                                                                    </div>
+                                                                    <div class="form-group mb-3">
+                                                                        <label for="penguji_2">Dosen Penguji 2 <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <input type="text" name="penguji_2"
+                                                                            class="form-control" required
+                                                                            value="{{ $item->finalExam->penguji_2 }}">
+                                                                    </div>
+                                                                    <div class="form-group mb-3">
+                                                                        <label for="penguji_3">Dosen Penguji 3 <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <input type="text" name="penguji_3"
+                                                                            class="form-control" required
+                                                                            value="{{ $item->finalExam->penguji_3 }}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                        <td>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal{{ $item->id }}">
-                                                Detail Jadwal
+                                                Detail
                                             </button>
-    
+
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Jadwal Ujian Tugas Akhir
+                                                            <h5 class="modal-title" id="exampleModalLabel">Jadwal Ujian
+                                                                Tugas Akhir
                                                                 {{ $item->user->name }}</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <table class="table table-bordered">
@@ -253,7 +327,7 @@
                                                                     <td>:</td>
                                                                     <td>{{ $item->finalExam->judul }}</td>
                                                                 </tr>
-    
+
                                                                 <tr>
                                                                     <th>Waktu Seminar</th>
                                                                     <td>:</td>
@@ -305,8 +379,69 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                                data-bs-target="#update{{ $item->id }}">
+                                                Update
+                                            </button>
+                                            <div class="modal fade" id="update{{ $item->id }}" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <form action="{{ route('admin.jadwal.exams.update') }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Update
+                                                                    Jadwal Ujian Tugas Akhir
+                                                                    {{ $item->user->name }}</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="modal-body">
+                                                                    <input type="hidden" name="id"
+                                                                        value="{{ $item->id }}">
+                                                                    <div class="form-group mb-3">
+                                                                        <label for="tanggal">Tanggal <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <input type="date" name="tanggal"
+                                                                            class="form-control" required
+                                                                            value="{{ $item->tanggal }}">
+                                                                    </div>
+                                                                    <div class="form-group mb-3">
+                                                                        <label for="waktu">Waktu <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <input type="text" name="waktu"
+                                                                            class="form-control" required
+                                                                            value="{{ $item->waktu }}">
+                                                                    </div>
+                                                                    <div class="form-group mb-3">
+                                                                        <label for="tempat">Tempat <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <input type="text" name="tempat"
+                                                                            class="form-control" required
+                                                                            value="{{ $item->tempat }}">
+                                                                    </div>
+
+                                                                    <div class="form-group mb-3">
+                                                                        <label for="keterangan">Keterangan</label>
+                                                                        <textarea name="keterangan" class="form-control" rows="3" value="{{ $item->keterangan }}"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+
                                         </td>
-                                        
+
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -8,18 +8,18 @@
                 <tr>
                     <td>Lulus</td>
                     <td>:</td>
-                    <td>Ujian Tugas Akhir Telah Lulus, Mahasiswa Dapat Mengisi Dokumen Final</td>
+                    <td>Ujian Tugas Akhir Lulus, Mahasiswa Dapat Mengisi Dokumen Final</td>
                 </tr>
                 <tr>
                     <td>Tidak Lulus</td>
                     <td>:</td>
-                    <td>Ujian Tugas Akhir Telah Tidak Lulus, Mahasiswa Dapat Mengajukan Ujian Kembali di Dashboard User di
+                    <td>Ujian Tugas Akhir Tidak Lulus, Mahasiswa Dapat Mengajukan Ujian Kembali di Dashboard User di
                         Menu    </td>
                 </tr>
                 <tr>
                     <td>Pending</td>
                     <td>:</td>
-                    <td>Mahasiswa Telah Mendaftar Ujian Tugas Akhir, Menunggu Status Kelulusan Dari Admin</td>
+                    <td>Mahasiswa Mendaftar Ujian Tugas Akhir, Menunggu Status Kelulusan Dari Admin</td>
                 </tr>
             </table>
             <hr>

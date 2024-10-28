@@ -54,10 +54,12 @@ Route::group(['middleware' => ['auth.check:admin']], function () {
     Route::get('/admin/final_exam', [AdminController::class, 'finalExam'])->name('admin.final_exam');
     Route::post('/admin/final_exam/approve', [AdminController::class, 'finalExamApprove'])->name('admin.final-exam-approve');
     Route::post('/admin/final_exam/reject', [AdminController::class, 'finalExamReject'])->name('admin.final-exam-reject');
+    Route::post('/admin/final_exam/updateDosen', [AdminController::class, 'finalExamUpdateDosen'])->name('admin.final-exam.updateDosen');
 
     // Jadwal Ujian Skripsi
     Route::get('/admin/jadwal/final-exam', [AdminController::class, 'jadwalFinalExam'])->name('admin.jadwal.final-exam');
     Route::post('/admin/jadwal/final-exam/store', [AdminController::class, 'jadwalFinalExamStore'])->name('admin.jadwal.exams.store');
+    Route::post('/admin/jadwal/final-exam/update', [AdminController::class, 'jadwalFinalExamUpdate'])->name('admin.jadwal.exams.update');
 
     // Pengumuman Proposal
     Route::get('/admin/proposal/pengumuman', [AdminController::class, 'proposalPengumuman'])->name('admin.proposal.pengumuman');

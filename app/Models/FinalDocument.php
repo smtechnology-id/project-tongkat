@@ -13,6 +13,7 @@ class FinalDocument extends Model
         'proposal_id',
         'final_exam_id',
         'user_id',
+        'file_tugas_akhir',
         'pass_foto',
         'buku_tugas_akhir',
         'surat_tugas_pembimbing',

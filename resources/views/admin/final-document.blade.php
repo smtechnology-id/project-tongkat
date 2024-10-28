@@ -42,6 +42,12 @@
                                                                 target="_blank">Lihat Pas Foto</a></td>
                                                     </tr>
                                                     <tr>
+                                                        <td>File Tugas Akhir</td>
+                                                        <td>:</td>
+                                                        <td><a href="{{ asset('storage/final_document/' . $finalDocument->file_tugas_akhir) }}"
+                                                                target="_blank">Lihat File Tugas Akhir</a></td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>Buku Tugas Akhir</td>
                                                         <td>:</td>
                                                         <td><a href="{{ asset('storage/final_document/' . $finalDocument->buku_tugas_akhir) }}"

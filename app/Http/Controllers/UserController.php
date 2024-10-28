@@ -150,6 +150,7 @@ class UserController extends Controller
     {
         $request->validate([
             'pass_foto' => 'required|image|max:10048',
+            'file_tugas_akhir' => 'required|mimes:pdf|max:10048',
             'buku_tugas_akhir' => 'required|mimes:pdf|max:10048',
             'surat_tugas_pembimbing' => 'required|mimes:pdf|max:10048',
             'surat_tugas_penguji_ujian_proposal' => 'required|mimes:pdf|max:10048',
@@ -165,6 +166,7 @@ class UserController extends Controller
 
         $files = [
             'pass_foto',
+            'file_tugas_akhir',
             'buku_tugas_akhir',
             'surat_tugas_pembimbing',
             'surat_tugas_penguji_ujian_proposal',
@@ -227,6 +229,7 @@ class UserController extends Controller
 
         $files = [
             'pass_foto',
+            'file_tugas_akhir',
             'buku_tugas_akhir',
             'surat_tugas_pembimbing',
             'surat_tugas_penguji_ujian_proposal',

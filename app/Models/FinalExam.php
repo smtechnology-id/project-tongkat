@@ -15,4 +15,9 @@ class FinalExam extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function examSchedule()
+    {
+        return $this->hasOne(ExamSchedule::class, 'final_exam_id');
+    }
 }

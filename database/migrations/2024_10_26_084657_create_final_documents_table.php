@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('proposal_id')->references('id')->on('proposals')->onDelete('cascade');
             $table->unsignedBigInteger('final_exam_id');
             $table->foreign('final_exam_id')->references('id')->on('final_exam')->onDelete('cascade');
+            $table->string('file_tugas_akhir')->nullable();
             $table->string('pass_foto')->nullable();
             $table->string('buku_tugas_akhir')->nullable();
             $table->string('surat_tugas_pembimbing')->nullable();

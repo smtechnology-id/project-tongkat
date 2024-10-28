@@ -12,7 +12,7 @@
     <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>DASHBOARD || Tongkat</title>
+    <title>DASHBOARD || Tugas Akhir Program Studi Teknik Lingkungan</title>
 
     <!-- Styles -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -58,7 +58,7 @@
                         <img src="{{ asset('assets/images/user.png') }}">
 
                         <span class="activity-indicator"></span>
-                        <span class="user-info-text">{{ Auth::user()->name }}<br><span class="user-state-info">
+                        <span class="user-info-text">{{ Str::limit(Auth::user()->name, 12) }}<br><span class="user-state-info">
                                 @if (Auth::user()->role == 'admin')
                                 Administrator
                                 @elseif (Auth::user()->role == 'user')
@@ -72,11 +72,14 @@
             <div class="app-menu">
                 <ul class="accordion-menu">
                     <li class="sidebar-title">
-                        Tongkat
+                        Apps
                     </li>
                     @if (Auth::user()->role == 'admin')
-                   
-
+                    
+                    <li class="@yield('active_dashboard')">
+                        <a href="{{ route('admin.dashboard') }}" class="active"><i
+                                class="material-icons-two-tone">dashboard</i>Dashboard</a>
+                    </li>
                     <li>
                         <a href="#"><i class="material-icons-two-tone">upload_file</i>Proposal<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">

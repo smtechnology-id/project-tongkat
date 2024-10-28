@@ -16,8 +16,7 @@
                 @if ($proposal->status == 'pending')
                     <div class="card bg-warning">
                         <div class="card-body">
-                            <p class="card-text">Pendaftaran Proposal anda sedang menunggu konfirmasi dari Pihak Admin /
-                                Panitia,
+                            <p class="card-text">Pendaftaran Proposal anda sedang menunggu konfirmasi dari Pihak Admin,
                                 Silahkan
                                 menunggu Sampai Status Proposal berubah</p>
                             <p class="card-text">Catatan Dari Admin : {{ $proposal->catatan_admin ?? '-' }}</p>

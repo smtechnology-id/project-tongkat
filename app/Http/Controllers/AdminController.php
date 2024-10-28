@@ -128,6 +128,26 @@ class AdminController extends Controller
         return view('admin.final-exams', compact('pending', 'approved', 'rejected'));
     }
 
+    public function finalExamUpdateDosen(Request $request)
+    {
+        $request->validate([
+            'pembimbing_1' => 'required',
+            'pembimbing_2' => 'required',
+            'penguji_1' => 'required',
+            'penguji_2' => 'required',
+            'penguji_3' => 'required',
+        ]);
+        $finalExam = FinalExam::find($request->final_exam_id);
+        $finalExam->pembimbing_1 = $request->pembimbing_1;
+        $finalExam->pembimbing_2 = $request->pembimbing_2;
+        $finalExam->penguji_1 = $request->penguji_1;
+        $finalExam->penguji_2 = $request->penguji_2;
+        $finalExam->penguji_3 = $request->penguji_3;
+        $finalExam->save();
+        return redirect()->back()->with('success', 'Dosen berhasil diupdate');
+    }
+
+
     // Approve Final Exam
     public function finalExamApprove(Request $request)
     {
@@ -151,9 +171,10 @@ class AdminController extends Controller
     // Jadwal Ujian Skripsi
     public function jadwalFinalExam()
     {
-        $finalExams = FinalExam::where('status', 'approved')->get();
+        $belumTerjadwal = FinalExam::where('status', 'approved')->whereDoesntHave('examSchedule')->get();
+        $finalExams = FinalExam::where('status', 'approved')->whereHas('examSchedule')->get();
         $jadwal = ExamSchedule::orderBy('created_at', 'desc')->get();
-        return view('admin.jadwal-exams', compact('finalExams', 'jadwal'));
+        return view('admin.jadwal-exams', compact('belumTerjadwal', 'finalExams', 'jadwal'));
     }
 
     public function jadwalFinalExamStore(Request $request)
@@ -175,6 +196,24 @@ class AdminController extends Controller
             'keterangan' => $request->keterangan,
         ]);
         return redirect()->back()->with('success', 'Jadwal berhasil dibuat');
+    }
+
+    public function jadwalFinalExamUpdate(Request $request)
+    {
+        $request->validate([
+            'tanggal' => 'required',
+            'waktu' => 'required',
+            'tempat' => 'required',
+            'keterangan' => 'nullable',
+        ]);
+
+        $jadwal = ExamSchedule::find($request->id);
+        $jadwal->tanggal = $request->tanggal;
+        $jadwal->waktu = $request->waktu;
+        $jadwal->tempat = $request->tempat;
+        $jadwal->keterangan = $request->keterangan;
+        $jadwal->save();
+        return redirect()->back()->with('success', 'Jadwal berhasil diupdate');
     }
 
     public function proposalPengumuman()
