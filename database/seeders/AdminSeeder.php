@@ -18,9 +18,9 @@ class AdminSeeder extends Seeder
             'name' => 'Administrator',
             'nim' => '1234567890',
             'telephone' => '081234567890',
-            'email' => 'admin@tongkat.com',
+            'email' => 'admin@tugasakhirtlunud.com',
             'role' => 'admin',
-            'password' => Hash::make('xEYnws6y'),
+            'password' => Hash::make('xEYnws6y#123'),
         ]);
     }
 }
