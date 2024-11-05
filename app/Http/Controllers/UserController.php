@@ -148,36 +148,39 @@ class UserController extends Controller
     // Final Document Store
     public function finalDocumentStore(Request $request)
     {
+
         $request->validate([
-            'pass_foto' => 'required|image|max:10048',
-            'file_tugas_akhir' => 'required|mimes:pdf|max:10048',
-            'buku_tugas_akhir' => 'required|mimes:pdf|max:10048',
-            'surat_tugas_pembimbing' => 'required|mimes:pdf|max:10048',
-            'surat_tugas_penguji_ujian_proposal' => 'required|mimes:pdf|max:10048',
-            'berita_acara_ujian_proposal' => 'required|mimes:pdf|max:10048',
-            'surat_tugas_penguji_tugas_akhir' => 'required|mimes:pdf|max:10048',
-            'logbook_final_tugas_akhir' => 'required|mimes:pdf|max:10048',
-            'kartu_kehadiran_peserta_seminar_proposal' => 'required|mimes:pdf|max:10048',
-            'surat_keterangan_persetujuan_ujian_tugas_akhir' => 'required|mimes:pdf|max:10048',
-            'berita_acara_ujian_tugas_akhir' => 'required|mimes:pdf|max:10048',
-            'toefl' => 'required|mimes:pdf|max:10048',
-            'letter_of_acceptance' => 'required|mimes:pdf|max:10048',
+            'file_1' => 'required|image|max:10048',
+            'file_2' => 'required|mimes:pdf|max:10048',
+            'file_3' => 'required|mimes:pdf|max:10048',
+            'file_4' => 'required|mimes:pdf|max:10048',
+            'file_5' => 'required|mimes:pdf|max:10048',
+            'file_6' => 'required|mimes:pdf|max:10048',
+            'file_7' => 'required|mimes:pdf|max:10048',
+            'file_8' => 'required|mimes:pdf|max:10048',
+            'file_9' => 'required|mimes:pdf|max:10048',
+            'file_10' => 'required|mimes:pdf|max:10048',
+            'file_11' => 'required|mimes:pdf|max:10048',
+            'file_12' => 'required|mimes:pdf|max:10048',
+            'file_13' => 'required|mimes:pdf|max:10048',
+            'file_14' => 'required|mimes:pdf|max:10048',
         ]);
 
         $files = [
-            'pass_foto',
-            'file_tugas_akhir',
-            'buku_tugas_akhir',
-            'surat_tugas_pembimbing',
-            'surat_tugas_penguji_ujian_proposal',
-            'berita_acara_ujian_proposal',
-            'surat_tugas_penguji_tugas_akhir',
-            'logbook_final_tugas_akhir',
-            'kartu_kehadiran_peserta_seminar_proposal',
-            'surat_keterangan_persetujuan_ujian_tugas_akhir',
-            'berita_acara_ujian_tugas_akhir',
-            'toefl',
-            'letter_of_acceptance'
+            'file_1',
+            'file_2',
+            'file_3',
+            'file_4',
+            'file_5',
+            'file_6',
+            'file_7',
+            'file_8',
+            'file_9',
+            'file_10',
+            'file_11',
+            'file_12',
+            'file_13',
+            'file_14',
         ];
 
         $fileData = [];
@@ -207,18 +210,20 @@ class UserController extends Controller
     public function finalDocumentUpdate(Request $request)
     {
         $request->validate([
-            'pass_foto' => 'nullable|image|max:10048',
-            'buku_tugas_akhir' => 'nullable|mimes:pdf|max:10048',
-            'surat_tugas_pembimbing' => 'nullable|mimes:pdf|max:10048',
-            'surat_tugas_penguji_ujian_proposal' => 'nullable|mimes:pdf|max:10048',
-            'berita_acara_ujian_proposal' => 'nullable|mimes:pdf|max:10048',
-            'surat_tugas_penguji_tugas_akhir' => 'nullable|mimes:pdf|max:10048',
-            'logbook_final_tugas_akhir' => 'nullable|mimes:pdf|max:10048',
-            'kartu_kehadiran_peserta_seminar_proposal' => 'nullable|mimes:pdf|max:10048',
-            'surat_keterangan_persetujuan_ujian_tugas_akhir' => 'nullable|mimes:pdf|max:10048',
-            'berita_acara_ujian_tugas_akhir' => 'nullable|mimes:pdf|max:10048',
-            'toefl' => 'nullable|mimes:pdf|max:10048',
-            'letter_of_acceptance' => 'nullable|mimes:pdf|max:10048',
+            'file_1' => 'nullable|image|max:10048',
+            'file_2' => 'nullable|mimes:pdf|max:10048',
+            'file_3' => 'nullable|mimes:pdf|max:10048',
+            'file_4' => 'nullable|mimes:pdf|max:10048',
+            'file_5' => 'nullable|mimes:pdf|max:10048',
+            'file_6' => 'nullable|mimes:pdf|max:10048',
+            'file_7' => 'nullable|mimes:pdf|max:10048',
+            'file_8' => 'nullable|mimes:pdf|max:10048',
+            'file_9' => 'nullable|mimes:pdf|max:10048',
+            'file_10' => 'nullable|mimes:pdf|max:10048',
+            'file_11' => 'nullable|mimes:pdf|max:10048',
+            'file_12' => 'nullable|mimes:pdf|max:10048',
+            'file_13' => 'nullable|mimes:pdf|max:10048',
+            'file_14' => 'nullable|mimes:pdf|max:10048',
         ]);
 
         $finalDocument = FinalDocument::where('user_id', Auth::id())->first();
@@ -228,19 +233,20 @@ class UserController extends Controller
         }
 
         $files = [
-            'pass_foto',
-            'file_tugas_akhir',
-            'buku_tugas_akhir',
-            'surat_tugas_pembimbing',
-            'surat_tugas_penguji_ujian_proposal',
-            'berita_acara_ujian_proposal',
-            'surat_tugas_penguji_tugas_akhir',
-            'logbook_final_tugas_akhir',
-            'kartu_kehadiran_peserta_seminar_proposal',
-            'surat_keterangan_persetujuan_ujian_tugas_akhir',
-            'berita_acara_ujian_tugas_akhir',
-            'toefl',
-            'letter_of_acceptance'
+            'file_1',
+            'file_2',
+            'file_3',
+            'file_4',
+            'file_5',
+            'file_6',
+            'file_7',
+            'file_8',
+            'file_9',
+            'file_10',
+            'file_11',
+            'file_12',
+            'file_13',
+            'file_14',
         ];
 
         $updateData = [];

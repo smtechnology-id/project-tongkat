@@ -15,7 +15,7 @@
             <div class="card-body">
                 @if ($proposal->status_kelulusan != 'lulus')
                     <div class="alert alert-danger">
-                        Silahkan lengkapi proposal terlebih dahulu, Smapai status proposal menjadi <strong>Lulus</strong>
+                        Silahkan lengkapi proposal terlebih dahulu, Sampai status proposal menjadi <strong>Lulus</strong>
                     </div>
                 @elseif (!$final_exam)
                     <div class="alert alert-danger">

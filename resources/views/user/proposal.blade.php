@@ -178,7 +178,8 @@
                             <th>Dosen Pembimbing 1</th>
                             <th>Dosen Pembimbing 2</th>
                             <th>File</th>
-                            <th>Catatan</th>
+                            <th>Catatan Mahasiswa</th>
+                            <th>Catatan Admin</th>
                             <th>Status</th>
                             <th>Tanggal Pengajuan</th>
 
@@ -195,7 +196,8 @@
                                     <a target="_blank" href="{{ asset('file_proposal/' . $proposal->file) }}"
                                         class="btn btn-primary">Download</a>
                                 </td>
-                                <td>{{ $proposal->catatan_mahasiswa }}</td>
+                                <td>{{ $proposal->catatan_mahasiswa ?? '-' }}</td>
+                                <td>{{ $proposal->catatan_admin ?? '-' }}</td>
                                 <td>
                                     @if ($proposal->status == 'pending')
                                         <span class="badge bg-warning">Menunggu Konfirmasi Admin</span>

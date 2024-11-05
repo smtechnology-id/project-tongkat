@@ -170,7 +170,7 @@
                                                                 aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p>Apakah anda yakin ingin Meluluskan proposal ini?</p>
+                                                            <p>Apakah anda yakin ingin Meluluskan tugas akhir ini?</p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
