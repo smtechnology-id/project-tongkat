@@ -9,7 +9,7 @@ class FinalExam extends Model
 {
     use HasFactory;
     protected $table = 'final_exam';
-    protected $fillable = ['user_id', 'judul', 'pembimbing_1', 'pembimbing_2', 'penguji_1', 'penguji_2', 'penguji_3', 'file_1', 'file_2', 'file_3', 'file_4', 'status', 'catatan_admin', 'status_kelulusan'];
+    protected $fillable = ['user_id', 'judul', 'pembimbing_1', 'pembimbing_2', 'penguji_1', 'penguji_2', 'penguji_3', 'file_1', 'file_2', 'file_3', 'file_4', 'status', 'catatan_admin', 'catatan_mahasiswa', 'status_kelulusan'];
 
     public function user()
     {

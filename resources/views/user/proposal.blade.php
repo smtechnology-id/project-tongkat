@@ -193,7 +193,7 @@
                                 <td>{{ $proposal->pembimbing1 }}</td>
                                 <td>{{ $proposal->pembimbing2 }}</td>
                                 <td>
-                                    <a target="_blank" href="{{ asset('file_proposal/' . $proposal->file) }}"
+                                    <a target="_blank" href="{{ asset('storage/file_proposal/' . $proposal->file) }}"
                                         class="btn btn-primary">Download</a>
                                 </td>
                                 <td>{{ $proposal->catatan_mahasiswa ?? '-' }}</td>

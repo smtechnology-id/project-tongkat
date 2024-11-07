@@ -42,8 +42,8 @@ class UserController extends Controller
         // Updload File Dengan Artisan Storage Link
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $file_name = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('file_proposal'), $file_name);
+            $file_name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/file_proposal', $file_name);
         }
 
         $proposal = Proposal::create([
@@ -84,6 +84,7 @@ class UserController extends Controller
             'penguji_1' => 'required',
             'penguji_2' => 'required',
             'penguji_3' => 'required',
+            'catatan_mahasiswa' => 'nullable',
         ]);
         // Text Validasi error
         $messages = [
@@ -132,6 +133,7 @@ class UserController extends Controller
             'file_2' => $file_name_2,
             'file_3' => $file_name_3,
             'file_4' => $file_name_4,
+            'catatan_mahasiswa' => $request->catatan_mahasiswa,
         ]);
 
         return redirect()->back()->with('success', 'Pengajuan Ujian Tugas Akhir berhasil dikirim, Silahkan tunggu konfirmasi dari admin');

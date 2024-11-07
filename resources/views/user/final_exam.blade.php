@@ -146,6 +146,8 @@
                                         <th>Dosen Pembimbing</th>
                                         <th>Dosen Penguji</th>
                                         <th>Dokumen</th>
+                                        <th>Catatan Mahasiswa</th>
+                                        <th>Catatan Admin</th>
                                         <th>Status</th>
                                         <th>Tanggal Pengajuan</th>
                                     </tr>
@@ -231,6 +233,8 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td>{{ $final_exam->catatan_mahasiswa ?? '-' }}</td>
+                                            <td>{{ $final_exam->catatan_admin ?? '-' }}</td>
                                             <td>
                                                 @if ($final_exam->status == 'approved')
                                                     <span class="badge bg-success">Disetujui</span>
@@ -249,7 +253,6 @@
                     </div>
                 @endif
                 <br>
-
             </div>
         </div>
 
@@ -261,7 +264,7 @@
                     <form action="{{ route('user.examPost') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-header">
-                            <h5 class="modal-title" id="pengajuanLabel">Modal title</h5>
+                            <h5 class="modal-title" id="pengajuanLabel">Pendaftaran Ujian Tugas Akhir</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -328,6 +331,10 @@
                                 <input type="file" name="file_4" id="file_4" class="form-control" required
                                     accept="application/pdf">
                                 <small class="text-muted">File harus berformat PDF dan maksimal 1MB</small>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="catatan_mahasiswa">Catatan Mahasiswa</label>
+                                <textarea name="catatan_mahasiswa" id="catatan_mahasiswa" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('file_4'); //Logbook Kegiatan Tugas Akhir
             $table->string('status')->default('pending'); //status
             $table->enum('status_kelulusan', ['pending', 'lulus', 'tidak lulus'])->default('pending'); //status kelulusan
+            $table->string('catatan_mahasiswa')->nullable(); //catatan
             $table->string('catatan_admin')->nullable(); //catatan
             $table->timestamps();
         });

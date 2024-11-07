@@ -52,6 +52,8 @@
                                     <th>Dosen Penguji</th>
                                     <th>File</th>
                                     <th>Status Kelulusan</th>
+                                    <th>Catatan Mahasiswa</th>
+                                    <th>Catatan Admin</th>
                                     <th>Tanggal Pengajuan</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -145,6 +147,8 @@
                                                 <span class="badge bg-danger">Tidak Lulus</span>
                                             @endif
                                         </td>
+                                        <td>{{ $pending->catatan_mahasiswa ?? '-' }}</td>
+                                        <td>{{ $pending->catatan_admin ?? '-' }}</td>
                                         <td>{{ $pending->created_at->format('d-m-Y H:i:s') }}</td>
                                         <td>
                                             <!-- Button trigger modal -->

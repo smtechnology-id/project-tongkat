@@ -55,7 +55,7 @@
             <form action="{{ route('registerPost') }}" method="post">
                 @csrf
                 <div class="logo">
-                    <a href="{{ route('login') }}">Tongkat</a>
+                    <a href="{{ route('login') }}">Tugas Akhir Program Studi Teknik Lingkungan</a>
                 </div>
                 <p class="auth-description">Silahkan isi form dibawah ini untuk mendaftar.<br>Sudah punya akun? <a
                         href="{{ route('login') }}">Masuk</a></p>

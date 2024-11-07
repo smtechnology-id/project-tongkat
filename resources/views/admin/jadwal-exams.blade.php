@@ -30,6 +30,8 @@
                                     <th>Dosen Pembimbing</th>
                                     <th>Dosen Penguji</th>
                                     <th>Dokumen</th>
+                                    <th>Catatan Mahasiswa</th>
+                                    <th>Catatan Admin</th>
                                     <th>Status</th>
                                     <th>Tanggal Pengajuan</th>
                                     <th>Aksi</th>
@@ -114,6 +116,8 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        <td>{{ $proposal->catatan_mahasiswa ?? '-' }}</td>
+                                        <td>{{ $proposal->catatan_admin ?? '-' }}</td>
                                         <td>
                                             @if ($proposal->status == 'pending')
                                                 <span class="badge bg-warning">Menunggu Konfirmasi Admin</span>

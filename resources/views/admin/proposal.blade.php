@@ -198,7 +198,7 @@
                                         <td>{{ $approved->pembimbing1 }}</td>
                                         <td>{{ $approved->pembimbing2 }}</td>
                                         <td>
-                                            <a target="_blank" href="{{ asset('file_proposal/' . $approved->file) }}"
+                                            <a target="_blank" href="{{ asset('storage/file_proposal/' . $approved->file) }}"
                                                 class="btn btn-primary">Download</a>
                                         </td>
                                         <td>{{ $approved->catatan_mahasiswa ?? '-' }}</td>
@@ -250,7 +250,7 @@
                                         <td>{{ $rejected->pembimbing1 }}</td>
                                         <td>{{ $rejected->pembimbing2 }}</td>
                                         <td>
-                                            <a target="_blank" href="{{ asset('file_proposal/' . $rejected->file) }}"
+                                            <a target="_blank" href="{{ asset('storage/file_proposal/' . $rejected->file) }}"
                                                 class="btn btn-primary">Download</a>
                                         </td>
                                         <td>{{ $rejected->catatan_mahasiswa ?? '-' }}</td>

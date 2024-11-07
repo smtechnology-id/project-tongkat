@@ -43,11 +43,11 @@
                         <li class="list-group-item">7. <a
                                 href="{{ asset('assets/dokumen-download/Tugas Akhir formulir.pdf') }}" target="_blank">Tugas
                                 Akhir formulir</a></li>
-                        <li class="list-group-item">7. <a
+                        <li class="list-group-item">8. <a
                                 href="{{ asset('assets/dokumen-download/Format Materi Review Pra Proposal.pdf') }}" target="_blank">Format Materi Review Pra Proposal</a></li>
-                        <li class="list-group-item">7. <a
+                        <li class="list-group-item">9. <a
                                 href="{{ asset('assets/dokumen-download/Review Pra-Proposal TA.pdf') }}" target="_blank">Review Pra-Proposal TA</a></li>
-                        <li class="list-group-item">7. <a
+                        <li class="list-group-item">10. <a
                                 href="{{ asset('assets/dokumen-download/Lembar Pengesahan Proposal TA.docx') }}" target="_blank">Lembar Pengesahan Proposal TA</a></li>
                     </ul>
                 </div>
