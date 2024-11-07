@@ -85,6 +85,10 @@
                                         <td>{{ $pending->created_at->format('d-m-Y H:i:s') }}</td>
                                         <td>
                                             <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                data-bs-target="#update{{ $pending->id }}">
+                                                Update
+                                            </button>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#approve{{ $pending->id }}">
                                                 Approve
@@ -95,6 +99,46 @@
                                             </button>
 
                                             <!-- Modal -->
+                                            <div class="modal fade" id="update{{ $pending->id }}" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <form action="{{ route('admin.proposal.update') }}" method="post">
+                                                            @csrf
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Update
+                                                                    Proposal
+                                                                </h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <input type="hidden" name="id" value="{{ $pending->id }}">
+                                                                <div class="form-group">
+                                                                    <label for="judul">Judul</label>
+                                                                    <input type="hidden" name="id"
+                                                                        value="{{ $pending->id }}">
+                                                                    <input type="text" name="judul" id="judul" class="form-control" value="{{ $pending->judul }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="pembimbing1">Dosen Pembimbing 1</label>
+                                                                    <input type="text" name="pembimbing1" id="pembimbing1" class="form-control" value="{{ $pending->pembimbing1 }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="pembimbing2">Dosen Pembimbing 2</label>
+                                                                    <input type="text" name="pembimbing2" id="pembimbing2" class="form-control" value="{{ $pending->pembimbing2 }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Batal</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary">Update</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="modal fade" id="approve{{ $pending->id }}" tabindex="-1"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -184,7 +228,6 @@
                                     <th>Catatan Admin</th>
                                     <th>Status</th>
                                     <th>Tanggal Pengajuan</th>
-                                   
                                 </tr>
                             </thead>
                             <tbody>

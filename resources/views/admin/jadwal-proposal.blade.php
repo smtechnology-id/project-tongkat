@@ -152,6 +152,7 @@
                                 <th>NIM</th>
                                 <th>Judul</th>
                                 <th>Waktu</th>
+                                <th>Dosen Pembimbing</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -164,14 +165,132 @@
                                     <td>{{ $item->proposal->judul }}</td>
                                     <td>{{ $item->waktu }} - {{ $item->tanggal }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">
+                                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#update{{ $item->proposal->id }}">
+                                            Update Dosen Pembimbing
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="update{{ $item->proposal->id }}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form action="{{ route('admin.proposal.update') }}" method="post">
+                                                        @csrf
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Update
+                                                                Proposal
+                                                            </h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <input type="hidden" name="id"
+                                                                value="{{ $item->proposal->id }}">
+                                                            <div class="form-group">
+                                                                <label for="judul">Judul</label>
+                                                                <input type="text" name="judul" id="judul"
+                                                                    class="form-control"
+                                                                    value="{{ $item->proposal->judul }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="pembimbing1">Dosen Pembimbing 1</label>
+                                                                <input type="text" name="pembimbing1" id="pembimbing1"
+                                                                    class="form-control"
+                                                                    value="{{ $item->proposal->pembimbing1 }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="pembimbing2">Dosen Pembimbing 2</label>
+                                                                <input type="text" name="pembimbing2" id="pembimbing2"
+                                                                    class="form-control"
+                                                                    value="{{ $item->proposal->pembimbing2 }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-primary">Update</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#updateJadwal{{ $item->id }}">
+                                            Update Jadwal
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal{{ $item->proposal->id }}">
                                             Detail
                                         </button>
 
+
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="updateJadwal{{ $item->proposal->id }}"
+                                            tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form action="{{ route('admin.jadwal.proposal.update') }}"
+                                                        method="post">
+                                                        @csrf
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Update Jadwal
+                                                            </h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <input type="hidden" name="id"
+                                                                value="{{ $item->id }}">
+                                                            <div class="form-group mb-3">
+                                                                <label for="waktu">Waktu</label>
+                                                                <input type="text" name="waktu" id="waktu"
+                                                                    class="form-control" value="{{ $item->waktu }}">
+                                                            </div>
+                                                            <div class="form-group mb-3">
+                                                                <label for="tanggal">Tanggal</label>
+                                                                <input type="date" name="tanggal" id="tanggal"
+                                                                    class="form-control" value="{{ $item->tanggal }}">
+                                                            </div>
+                                                            <div class="form-group mb-3">
+                                                                <label for="tempat">Tempat</label>
+                                                                <input type="text" name="tempat" id="tempat"
+                                                                    class="form-control" value="{{ $item->tempat }}">
+                                                            </div>
+                                                            <div class="form-group mb-3">
+                                                                <label for="dosen1">Dosen Penguji 1</label>
+                                                                <input type="text" name="dosen1" id="dosen1"
+                                                                    class="form-control" value="{{ $item->dosen1 }}">
+                                                            </div>
+                                                            <div class="form-group mb-3">
+                                                                <label for="dosen2">Dosen Penguji 2</label>
+                                                                <input type="text" name="dosen2" id="dosen2"
+                                                                    class="form-control" value="{{ $item->dosen2 }}">
+                                                            </div>
+                                                            <div class="form-group mb-3">
+                                                                <label for="dosen3">Dosen Penguji 3</label>
+                                                                <input type="text" name="dosen3" id="dosen3"
+                                                                    class="form-control" value="{{ $item->dosen3 }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="keterangan">Keterangan</label>
+                                                                <textarea name="keterangan" id="keterangan" class="form-control" rows="3">{{ $item->keterangan }}</textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save
+                                                                changes</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="exampleModal{{ $item->proposal->id }}"
+                                            tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -196,7 +315,7 @@
                                                                 <td>:</td>
                                                                 <td>{{ $item->proposal->judul }}</td>
                                                             </tr>
-                                                            
+
                                                             <tr>
                                                                 <th>Waktu Seminar</th>
                                                                 <td>:</td>

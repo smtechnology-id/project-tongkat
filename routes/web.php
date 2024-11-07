@@ -42,6 +42,8 @@ Route::group(['middleware' => ['auth.check:admin']], function () {
     Route::post('/admin/proposal/approve', [AdminController::class, 'proposalApprove'])->name('admin.proposal.approve');
     // Proposal Reject
     Route::post('/admin/proposal/reject', [AdminController::class, 'proposalReject'])->name('admin.proposal.reject');
+    // Proposal Update
+    Route::post('/admin/proposal/update', [AdminController::class, 'proposalUpdate'])->name('admin.proposal.update');
 
     // Jadwal
     Route::get('/admin/jadwal', [AdminController::class, 'jadwal'])->name('admin.jadwal');
@@ -49,6 +51,7 @@ Route::group(['middleware' => ['auth.check:admin']], function () {
     // Jadwal Seminar Proposal
     Route::get('/admin/jadwal/proposal', [AdminController::class, 'jadwalProposal'])->name('admin.jadwal.proposal');
     Route::post('/admin/jadwal/proposal/store', [AdminController::class, 'jadwalProposalStore'])->name('admin.jadwal.proposal.store');
+    Route::post('/admin/jadwal/proposal/update', [AdminController::class, 'jadwalProposalUpdate'])->name('admin.jadwal.proposal.update');
 
     // Final Exam
     Route::get('/admin/final_exam', [AdminController::class, 'finalExam'])->name('admin.final_exam');

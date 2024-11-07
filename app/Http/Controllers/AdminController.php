@@ -75,6 +75,22 @@ class AdminController extends Controller
         $proposal->save();
         return redirect()->back()->with('success', 'Proposal berhasil ditolak');
     }
+    // Proposal Update
+    public function proposalUpdate(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'pembimbing1' => 'required',
+            'pembimbing2' => 'required',
+        ]);
+
+        $proposal = Proposal::find($request->id);
+        $proposal->judul = $request->judul;
+        $proposal->pembimbing1 = $request->pembimbing1;
+        $proposal->pembimbing2 = $request->pembimbing2;
+        $proposal->save();
+        return redirect()->back()->with('success', 'Proposal berhasil diupdate');
+    }
 
 
     // Jadwal
@@ -117,6 +133,31 @@ class AdminController extends Controller
             'keterangan' => $request->keterangan,
         ]);
         return redirect()->back()->with('success', 'Jadwal berhasil dibuat');
+    }
+
+    public function jadwalProposalUpdate(Request $request)
+    {
+        $request->validate([
+            
+            'tanggal' => 'required',
+            'waktu' => 'required',
+            'tempat' => 'required',
+            'dosen1' => 'required',
+            'dosen2' => 'required',
+            'dosen3' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        $jadwal = ProposalSchedule::find($request->id);
+        $jadwal->tanggal = $request->tanggal;
+        $jadwal->waktu = $request->waktu;
+        $jadwal->tempat = $request->tempat;
+        $jadwal->dosen1 = $request->dosen1;
+        $jadwal->dosen2 = $request->dosen2;
+        $jadwal->dosen3 = $request->dosen3;
+        $jadwal->keterangan = $request->keterangan;
+        $jadwal->save();
+        return redirect()->back()->with('success', 'Jadwal berhasil diupdate');
     }
 
     // Final Exam
