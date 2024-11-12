@@ -144,7 +144,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <table class="table table-bordered" id="datatable1" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="datatable4" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -167,7 +167,7 @@
                                     <td>
                                         <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#update{{ $item->proposal->id }}">
-                                            Update Dosen Pembimbing
+                                            Update Dosen
                                         </button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="update{{ $item->proposal->id }}" tabindex="-1"
@@ -178,7 +178,7 @@
                                                         @csrf
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Update
-                                                                Proposal
+                                                                Dosen Pembimbing
                                                             </h5>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
@@ -227,7 +227,7 @@
 
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="updateJadwal{{ $item->proposal->id }}"
+                                        <div class="modal fade" id="updateJadwal{{ $item->id }}"
                                             tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">

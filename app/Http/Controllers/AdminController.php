@@ -50,9 +50,9 @@ class AdminController extends Controller
     // Proposal
     public function proposal()
     {
-        $pending = Proposal::where('status', 'pending')->get();
-        $approved = Proposal::where('status', 'approved')->get();
-        $rejected = Proposal::where('status', 'rejected')->get();
+        $pending = Proposal::where('status', 'pending')->orderBy('created_at', 'desc')->get();
+        $approved = Proposal::where('status', 'approved')->orderBy('created_at', 'desc')->get();
+        $rejected = Proposal::where('status', 'rejected')->orderBy('created_at', 'desc')->get();
         return view('admin.proposal', compact('pending', 'approved', 'rejected'));
     }
 
@@ -73,6 +73,8 @@ class AdminController extends Controller
         $proposal->status = 'rejected';
         $proposal->catatan_admin = $request->catatan_admin;
         $proposal->save();
+        // Delete Jadwal Proposal
+        $delete = ProposalSchedule::where('proposal_id', $proposal->id)->delete();
         return redirect()->back()->with('success', 'Proposal berhasil ditolak');
     }
     // Proposal Update
@@ -102,7 +104,7 @@ class AdminController extends Controller
     // Jadwal Seminar Proposal
     public function jadwalProposal()
     {
-        $proposals = Proposal::where('status', 'approved')->get();
+        $proposals = Proposal::where('status', 'approved')->whereDoesntHave('ProposalSchedule')->get();
         $jadwal = ProposalSchedule::orderBy('created_at', 'desc')->get();
         return view('admin.jadwal-proposal', compact('proposals', 'jadwal'));
     }

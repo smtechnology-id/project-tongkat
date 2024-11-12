@@ -21,10 +21,11 @@ return new class extends Migration
             $table->string('penguji_1'); //Penguji 1
             $table->string('penguji_2'); //Penguji 2
             $table->string('penguji_3'); //Penguji 3
-            $table->string('file_1') ; // Dokumen Skripsi
-            $table->string('file_2'); //Surat Keterangan Persetujuan Tugas Akhir
-            $table->string('file_3'); //Kartu Kehadiran Ujian Proposal Tugas Akhir
-            $table->string('file_4'); //Logbook Kegiatan Tugas Akhir
+            $table->string('file_1')->nullable(); // Dokumen Skripsi
+            $table->string('file_2')->nullable(); //Surat Keterangan Persetujuan Tugas Akhir
+            $table->string('file_3')->nullable(); //Kartu Kehadiran Ujian Proposal Tugas Akhir
+            $table->string('file_4')->nullable(); //Logbook Kegiatan Tugas Akhir
+            $table->string('status_kelengkapan_dokumen')->default('belum lengkap'); //status kelengkapan dokumen
             $table->string('status')->default('pending'); //status
             $table->enum('status_kelulusan', ['pending', 'lulus', 'tidak lulus'])->default('pending'); //status kelulusan
             $table->string('catatan_mahasiswa')->nullable(); //catatan

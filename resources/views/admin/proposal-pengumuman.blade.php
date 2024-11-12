@@ -47,13 +47,9 @@
                                 <th>No</th>
                                 <th>Nama Mahasiswa</th>
                                 <th>NIM</th>
-                                <th>No HP</th>
-                                <th>Judul</th>
-                                <th>Dosen Pembimbing 1</th>
-                                <th>Dosen Pembimbing 2</th>
                                 <th>File</th>
-                                <th>Catatan</th>
                                 <th>Status Kelulusan</th>
+                                <th>Detail</th>
                                 <th>Tanggal Pengajuan</th>
                                 <th>Aksi</th>
                             </tr>
@@ -64,15 +60,11 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $pending->user->name }}</td>
                                 <td>{{ $pending->user->nim }}</td>
-                                <td>{{ $pending->user->telephone }}</td>
-                                <td>{{ $pending->judul }}</td>
-                                <td>{{ $pending->pembimbing1 }}</td>
-                                <td>{{ $pending->pembimbing2 }}</td>
                                 <td>
-                                    <a target="_blank" href="{{ asset('file_proposal/' . $pending->file) }}"
-                                        class="btn btn-primary">Download</a>
+                                    <a target="_blank" href="{{ asset('storage/file_proposal/' . $pending->file) }}"
+                                        class="btn btn-link text-decoration-none btn-sm">Download</a>
                                 </td>
-                                <td>{{ $pending->catatan_mahasiswa }}</td>
+                                
                                 <td>
                                     @if ($pending->status_kelulusan == 'pending')
                                     <span class="badge bg-warning">Menunggu Konfirmasi Admin</span>
@@ -81,6 +73,64 @@
                                     @else
                                     <span class="badge bg-danger">Tidak Lulus</span>
                                     @endif
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#detailPending{{ $pending->id }}">
+                                        Detail
+                                    </button>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="detailPending{{ $pending->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Detail Proposal</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <th>Nama Mahasiswa</th>
+                                                            <td>{{ $pending->user->name }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>NIM</th>
+                                                            <td>{{ $pending->user->nim }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Judul</th>
+                                                            <td>{{ $pending->judul }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Dosen Pembimbing 1</th>
+                                                            <td>{{ $pending->pembimbing1 }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Dosen Pembimbing 2</th>
+                                                            <td>{{ $pending->pembimbing2 }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Catatan Mahasiswa</th>
+                                                            <td>{{ $pending->catatan_mahasiswa ?? '-' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Catatan Admin</th>
+                                                            <td>{{ $pending->catatan_admin ?? '-' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Tanggal Pengajuan</th>
+                                                            <td>{{ $pending->created_at->format('d-m-Y H:i:s') }}</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </td>
                                 <td>{{ $pending->created_at->format('d-m-Y H:i:s') }}</td>
                                 <td>
@@ -159,19 +209,15 @@
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="datatable1" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="datatable4" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nama Mahasiswa</th>
                                 <th>NIM</th>
-                                <th>No HP</th>
-                                <th>Judul</th>
-                                <th>Dosen Pembimbing 1</th>
-                                <th>Dosen Pembimbing 2</th>
                                 <th>File</th>
-                                <th>Catatan</th>
                                 <th>Status Kelulusan</th>
+                                <th>Detail</th>
                                 <th>Tanggal Pengajuan</th>
 
                             </tr>
@@ -182,15 +228,11 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $lulus->user->name }}</td>
                                 <td>{{ $lulus->user->nim }}</td>
-                                <td>{{ $lulus->user->telephone }}</td>
-                                <td>{{ $lulus->judul }}</td>
-                                <td>{{ $lulus->pembimbing1 }}</td>
-                                <td>{{ $lulus->pembimbing2 }}</td>
+                                
                                 <td>
-                                    <a target="_blank" href="{{ asset('file_proposal/' . $lulus->file) }}"
-                                        class="btn btn-primary">Download</a>
+                                    <a target="_blank" href="{{ asset('storage/file_proposal/' . $lulus->file) }}"
+                                        class="btn btn-light btn-sm">Download</a>
                                 </td>
-                                <td>{{ $lulus->catatan_mahasiswa }}</td>
                                 <td>
                                     @if ($lulus->status_kelulusan == 'pending')
                                     <span class="badge bg-warning">Menunggu Konfirmasi Admin</span>
@@ -199,6 +241,62 @@
                                     @elseif ($lulus->status_kelulusan == 'tidak lulus')
                                     <span class="badge bg-danger">Tidak Lulus</span>
                                     @endif
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailLulus{{ $lulus->id }}">
+                                        Detail
+                                    </button>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="detailLulus{{ $lulus->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Detail Proposal</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <th>Nama Mahasiswa</th>
+                                                            <td>{{ $lulus->user->name }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>NIM</th>
+                                                            <td>{{ $lulus->user->nim }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Judul</th>
+                                                            <td>{{ $lulus->judul }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Dosen Pembimbing 1</th>
+                                                            <td>{{ $lulus->pembimbing1 }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Dosen Pembimbing 2</th>
+                                                            <td>{{ $lulus->pembimbing2 }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Catatan Mahasiswa</th>
+                                                            <td>{{ $lulus->catatan_mahasiswa ?? '-' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Catatan Admin</th>
+                                                            <td>{{ $lulus->catatan_admin ?? '-' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Tanggal Pengajuan</th>
+                                                            <td>{{ $lulus->created_at->format('d-m-Y H:i:s') }}</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td>{{ $lulus->created_at->format('d-m-Y H:i:s') }}</td>
                             </tr>
@@ -209,21 +307,16 @@
             </div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="datatable1" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="datatable4" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nama Mahasiswa</th>
                                 <th>NIM</th>
-                                <th>No HP</th>
-                                <th>Judul</th>
-                                <th>Dosen Pembimbing 1</th>
-                                <th>Dosen Pembimbing 2</th>
                                 <th>File</th>
-                                <th>Catatan</th>
                                 <th>Status Kelulusan</th>
+                                <th>Detail</th>
                                 <th>Tanggal Pengajuan</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -232,23 +325,74 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $tidak_lulus->user->name }}</td>
                                 <td>{{ $tidak_lulus->user->nim }}</td>
-                                <td>{{ $tidak_lulus->user->telephone }}</td>
-                                <td>{{ $tidak_lulus->judul }}</td>
-                                <td>{{ $tidak_lulus->pembimbing1 }}</td>
-                                <td>{{ $tidak_lulus->pembimbing2 }}</td>
                                 <td>
-                                    <a target="_blank" href="{{ asset('file_proposal/' . $tidak_lulus->file) }}"
-                                        class="btn btn-primary">Download</a>
+                                    <a target="_blank" href="{{ asset('storage/file_proposal/' . $tidak_lulus->file) }}"
+                                        class="btn btn-light btn-sm">Download</a>
                                 </td>
-                                <td>{{ $tidak_lulus->catatan_mahasiswa }}</td>
                                 <td>
                                     @if ($tidak_lulus->status_kelulusan == 'pending')
                                     <span class="badge bg-warning">Menunggu Konfirmasi Admin</span>
                                     @elseif ($tidak_lulus->status_kelulusan == 'lulus')
                                     <span class="badge bg-success">Lulus</span>
-                                    @else
+                                    @elseif ($tidak_lulus->status_kelulusan == 'tidak lulus')
                                     <span class="badge bg-danger">Tidak Lulus</span>
                                     @endif
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailTidakLulus{{ $tidak_lulus->id }}">
+                                        Detail
+                                    </button>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="detailTidakLulus{{ $tidak_lulus->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Detail Proposal</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <th>Nama Mahasiswa</th>
+                                                            <td>{{ $tidak_lulus->user->name }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>NIM</th>
+                                                            <td>{{ $tidak_lulus->user->nim }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Judul</th>
+                                                            <td>{{ $tidak_lulus->judul }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Dosen Pembimbing 1</th>
+                                                            <td>{{ $tidak_lulus->pembimbing1 }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Dosen Pembimbing 2</th>
+                                                            <td>{{ $tidak_lulus->pembimbing2 }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Catatan Mahasiswa</th>
+                                                            <td>{{ $tidak_lulus->catatan_mahasiswa ?? '-' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Catatan Admin</th>
+                                                            <td>{{ $tidak_lulus->catatan_admin ?? '-' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Tanggal Pengajuan</th>
+                                                            <td>{{ $tidak_lulus->created_at->format('d-m-Y H:i:s') }}</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td>{{ $tidak_lulus->created_at->format('d-m-Y H:i:s') }}</td>
                             </tr>

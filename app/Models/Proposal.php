@@ -27,8 +27,8 @@ class Proposal extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function proposalSchedules()
+    public function proposalSchedule()
     {
-        return $this->hasMany(ProposalSchedule::class);
+        return $this->hasOne(ProposalSchedule::class);
     }
 }

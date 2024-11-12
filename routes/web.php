@@ -88,6 +88,10 @@ Route::group(['middleware' => ['auth.check:user']], function () {
     // Final Exam
     Route::get('/user/final_exam', [UserController::class, 'finalExam'])->name('user.final_exam');
     Route::post('/user/final_examPost', [UserController::class, 'examPost'])->name('user.examPost');
+    Route::post('/user/uploadFile1', [UserController::class, 'uploadFile1'])->name('user.uploadFile1');
+    Route::post('/user/uploadFile2', [UserController::class, 'uploadFile2'])->name('user.uploadFile2');
+    Route::post('/user/uploadFile3', [UserController::class, 'uploadFile3'])->name('user.uploadFile3');
+    Route::post('/user/uploadFile4', [UserController::class, 'uploadFile4'])->name('user.uploadFile4');
 
     // Final Document
     Route::get('/user/final_document', [UserController::class, 'finalDocument'])->name('user.final_document');
